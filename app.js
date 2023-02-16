@@ -1,4 +1,7 @@
-const chalk = require('chalk');
+const http = require('http');
 
-console.log(chalk.blue('Hello world!'));
-
+http.createServer(function (req,res){
+    res.writeHead(200,{'Content-Type':'application\json'});
+    res.write(JSON.stringify({name:'Husain Rampura' ,email: "husain@test.com"}));
+    res.end();
+}).listen(5000);
