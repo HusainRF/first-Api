@@ -1,4 +1,4 @@
-// data of multiple users then we have to create the array
+// data of multile users then we have to create the array
 
 const data = [
     {name:'Husain' , email:'husain@test.com',wheight:'95kg'},

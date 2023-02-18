@@ -1,8 +1,17 @@
-const http = require('http');
-const data = require('./data.js');
+// const http = require('http');
+// const data = require('./data.js');
 
-http.createServer(function (req,res){
-    res.writeHead(200,{'Content-Type':'application\json'});
-    res.write(JSON.stringify(data));
-    res.end();
-}).listen(5000);
+// http.createServer(function (req,res){
+//     res.writeHead(200,{'Content-Type':'application\json'});
+//     res.write(JSON.stringify(data));
+//     res.end();
+// }).listen(5000);
+
+// part-1
+console.log("1st to execute");
+
+setTimeout(()=>{
+    console.log("2nd to execute "); // it execute 3rd due to delay
+},2000);
+
+console.log("3rd to execute"); // but it execute 2nd
