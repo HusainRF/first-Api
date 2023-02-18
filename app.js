@@ -8,10 +8,22 @@
 // }).listen(5000);
 
 // part-1
-console.log("1st to execute");
+// console.log("1st to execute");
+
+// setTimeout(()=>{
+//     console.log("2nd to execute "); // it execute 3rd due to delay
+// },2000);
+
+// console.log("3rd to execute"); // but it execute 2nd
+
+
+// drawback of Asynchronous lang
+var a = 10 ;
+var b = 0 ;
 
 setTimeout(()=>{
-    console.log("2nd to execute "); // it execute 3rd due to delay
-},2000);
+    b=20;
+});
 
-console.log("3rd to execute"); // but it execute 2nd
+console.log(a + b); // it prints 10 because, before executing b=20 it execute console
+ 
