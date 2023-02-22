@@ -6,10 +6,12 @@ app.get("/" , (req ,res)=> {
 });
 
 app.get("/about" , (req,res)=>{
-    res.send(`
-        <h1>this is about page</h1>
-        <a href="/">go to home</a>
-    `);
+    // this is array or list of all parameters
+    console.log(req.query);
+
+    // this specifically 
+    console.log(req.query.name);
+    
 });
 
 app.listen(5000);
