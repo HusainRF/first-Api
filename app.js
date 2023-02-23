@@ -2,8 +2,11 @@ const express = require("express");
 const path = require('path');
 
 const app = express();
-const publicPath = path.join(__dirname , '/public');
 
+// set the view engine or template engine
+app.set("view engine" ,"ejs");
+
+const publicPath = path.join(__dirname , '/public');
 app.get('' , (_, res)=>{
     res.sendFile(`${publicPath}/index.html`);
 });
@@ -11,6 +14,11 @@ app.get('' , (_, res)=>{
 app.get('/about' , (_,res) =>{
     res.sendFile(`${publicPath}/about.html`);
 });
+
+app.get('/profile' , (_,res)=>{
+    res.render("profile");
+});
+
 
 app.get('*' , (_ , res) => {
     res.sendFile(`${publicPath}/404page.html`);
