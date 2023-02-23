@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>profile page</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>These is the profile page using ejs... template or view engine</h1>
-    <h2>What is view engine or template engine??</h2>
-    <p>Think of a template engine as a tool that helps you create reusable pieces of content that can be customized with dynamic data.</p>
-
-        <p>Imagine you're creating a newsletter for your company, and you want to include a section that displays the latest news articles from your website. Instead of manually copying and pasting the articles into the newsletter each time, you can create a template for the news section using a template engine.</p>
-        
-        <p>The template would include placeholders for the headline, image, and summary of each article. Then, when you're ready to create the newsletter, you can use the template engine to fill in the placeholders with the actual data for each article.</p>
-        
-        <p>The template engine takes care of the formatting and presentation of the data, so you don't have to worry about styling or layout. You can use the same template for each newsletter, just swapping out the data as needed.</p>
-        
-        <p>Template engines are commonly used in web development for creating dynamic web pages. They can help simplify the development process by separating the presentation of the content from the logic that generates it. This makes it easier to update the content and layout of your website without having to modify the underlying code.</p>
+    <!--   these help ous to differentiate content with receiving data  -->
+    <!-- and  that data can be accessed by object with it data name as shown below -->
+    <h1>Welcome  <%= user.name %> </h1>
+    <h3>Your email is : <%= user.email %> </h3>
 </body>
 </html>

@@ -15,8 +15,17 @@ app.get('/about' , (_,res) =>{
     res.sendFile(`${publicPath}/about.html`);
 });
 
-app.get('/profile' , (_,res)=>{
-    res.render("profile");
+app.get('/ejs' , (_,res)=>{
+    res.render("WhatIsEjs");
+});
+
+app.get("/profile" , (_, res)=>{
+    const user = {
+        name : "Husain Rampurawala",
+        email : "husain@gmail.com",
+        age : "22"
+    }
+    res.render("profile" , {user});
 });
 
 
