@@ -12,6 +12,9 @@ app.get('/about' , (_,res) =>{
     res.sendFile(`${publicPath}/about.html`);
 });
 
+app.get('*' , (_ , res) => {
+    res.sendFile(`${publicPath}/404page.html`);
+});
 
 
 app.listen(5000); 
