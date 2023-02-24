@@ -1,37 +1,30 @@
-const express = require("express");
-const path = require('path');
-
+const express = require('express')
 const app = express();
 
-// set the view engine or template engine
-app.set("view engine" ,"ejs");
+// setting the middleware for filtering the request 
+// coming from client side
 
-const publicPath = path.join(__dirname , '/public');
-app.get('' , (_, res)=>{
-    res.sendFile(`${publicPath}/index.html`);
-});
-
-app.get('/about' , (_,res) =>{
-    res.sendFile(`${publicPath}/about.html`);
-});
-
-app.get('/ejs' , (_,res)=>{
-    res.render("WhatIsEjs");
-});
-
-app.get("/profile" , (_, res)=>{
-    const user = {
-        name : "Husain Rampurawala",
-        email : "husain@gmail.com",
-        age : "22"
+const reqFilter = (req, res, next)=>{
+    if(!req.query.age)
+    {
+        res.send("Please enter the age!!");
     }
-    res.render("profile" , {user});
+    else if(req.query.age < 18){
+        // basically check for the age of user must be above 18 for using this side 
+        res.send("You cannot access this page...!!");
+    }
+    else 
+        next();
+}
+
+app.use(reqFilter);
+
+app.get('/' , (req ,res) => {
+    res.send("These is home page");
 });
 
-
-app.get('*' , (_ , res) => {
-    res.sendFile(`${publicPath}/404page.html`);
+app.get('/user' , (req, res) =>{
+    res.send("These is user page");
 });
 
-
-app.listen(5000); 
+app.listen(5000);
