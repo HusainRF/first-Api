@@ -17,7 +17,8 @@ const reqFilter = (req, res, next)=>{
         next();
 }
 
-app.use(reqFilter);
+// for route level middle ware we have to comment these 
+// app.use(reqFilter);
 
 app.get('/' , (req ,res) => {
     res.send("These is home page");
@@ -25,6 +26,11 @@ app.get('/' , (req ,res) => {
 
 app.get('/user' , (req, res) =>{
     res.send("These is user page");
+});
+
+app.get('/about' ,reqFilter ,(req, res) =>{
+    // adding route level middle ware only to these route
+    res.send("These is about page");
 });
 
 app.listen(5000);
