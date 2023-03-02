@@ -1,33 +1,22 @@
-const express = require('express')
-
-// for grouping of multiple routes to fall under same  middleware 
-// we have to add a new function router()
-const route = express.Router();
-const reqFilter = require('./middleware');
+const {MongoClient} = require('mongodb');
 
 
-const app = express();
-app.use(reqFilter);
-
-app.get('/' , (req ,res) => {
-    // here we din't apply middleware
-    res.send("These is home page");
-});
+// remember localhost is an ip address for 127.0.0.1
+// so 'localhost' is not working here instead of this we have to write 127.0.0.1
+// this is due to updated version of node 
+const url = "mongodb://127.0.0.1:27017/";
 
 
-// instead of using app >>> we use "route" object to grp them together
-route.get('/user' , (req, res) =>{
-    // grouping route level middle ware to this route
-    res.send("These is user page");
-});
+const database = 'e-comm'
+const client = new MongoClient(url);
 
-// instead of using app >>> we use "route" object
-route.get('/about' ,(req, res) =>{
-    // grouping route level middle ware to this route
-    res.send("These is about page");
-});
+async function getData(){
+    const result = await client.connect();
+    const db = result.db(database);
+    const collection = db.collection('products');
+    const response  = await collection.find({}).toArray();
 
-// to group middleware we have to do these compulsory
-app.use('/' , route); 
+    console.log(response);
+}
 
-app.listen(5000);
+getData();
