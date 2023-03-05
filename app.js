@@ -10,13 +10,28 @@ const url = "mongodb://127.0.0.1:27017/";
 const database = 'e-comm'
 const client = new MongoClient(url);
 
-async function getData(){
+async function dbConnect(){
     const result = await client.connect();
     const db = result.db(database);
-    const collection = db.collection('products');
-    const response  = await collection.find({}).toArray();
-
-    console.log(response);
+    return db.collection('products');
 }
 
-getData();
+// this is the first method
+// dbConnect().then((resp)=>{
+//     // console.log(resp.find().toArray()); : this gives ous the promise now lets handle the promise
+//     // .then() function is use to handle the promise due to few functions  
+//     resp.find().toArray().then((data)=>{
+//         console.warn(data);
+//     })
+// })
+
+// 2nd method
+const main = async () =>{
+    // async is used when we use await keyword and await is used to handle promises
+    let data = await dbConnect();
+    data = await data.find().toArray();
+    console.warn(data);
+} 
+
+main();
+
