@@ -1,20 +1,7 @@
-const {MongoClient} = require('mongodb');
+//connectivity was done is different file
+const dbConnect = require('./mongodb')
 
-
-// remember localhost is an ip address for 127.0.0.1
-// so 'localhost' is not working here instead of this we have to write 127.0.0.1
-// this is due to updated version of node 
-const url = "mongodb://127.0.0.1:27017/";
-
-
-const database = 'e-comm'
-const client = new MongoClient(url);
-
-async function dbConnect(){
-    const result = await client.connect();
-    const db = result.db(database);
-    return db.collection('products');
-}
+// opration performed in different file
 
 // this is the first method
 // dbConnect().then((resp)=>{
