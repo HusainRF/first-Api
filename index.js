@@ -1,4 +1,5 @@
 const express = require("express");
+const product = require("./product");
 require('./config');
 const Product = require('./product');
 const app = express();
@@ -19,6 +20,15 @@ app.get("/list" , async (req ,resp)=>{
 app.delete("/delete/:_id" , async (req ,resp)=>{
     console.log(req.params);
     const data = await Product.deleteOne(req.params);
+    resp.send(data);
+})
+
+app.put("/update/:_id" , async (req, resp) => {
+    console.log(req.params);
+    const data = await Product.updateOne(
+        req.params,
+        {$set : req.body}
+    )
     resp.send(data);
 })
 
